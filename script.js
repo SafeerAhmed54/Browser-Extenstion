@@ -23,7 +23,7 @@ fetch("data.json")
                 <button class="remove-button">Remove</button>
                 <!-- Rounded switch -->
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" ${extension.isActive? "checked" : ""}>
                   <span class="slider round"></span>
                 </label>
               </div>
