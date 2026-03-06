@@ -17,6 +17,15 @@
       src: url('./assets/fonts/NotoSans-VariableFont_wdth\,wght.ttf');
     }
 
+    :root {
+      --background-color: linear-gradient(180deg, #040918 0%, #091540 100%);
+      --text-color: hsl(200, 60%, 99%);
+      --paragraph-text: hsl(0, 0%, 78%);
+      --card-background: hsl(226, 25%, 17%);
+      --card-border: hsl(226, 11%, 37%);
+      --button-background: hsl(225, 23%, 24%);
+    }
+
     body {
       margin: 0%;
       padding: 0%;
@@ -35,8 +44,8 @@
 
     .extention {
       width: 100%;
-      height: auto;
-      background: linear-gradient(180deg, #040918 0%, #091540 100%);
+      min-height: 100dvh;
+      background: var(--background-color);
     }
 
     .container {
@@ -109,25 +118,25 @@
     }
 
     .paragraph-color {
-      color: hsl(0, 0%, 78%);
+      color: var(--paragraph-text);
     }
 
     .card-here {
       display: flex;
       flex-direction: column;
       gap: 3rem;
-      background-color: hsl(226, 25%, 17%);
+      background-color: var(--card-background);
       padding: 1.5rem;
       border-radius: 1.5rem;
-      border: 1px solid hsl(226, 11%, 37%);
+      border: 1px solid var(--card-border);
     }
 
     .remove-button {
-      color: hsl(200, 60%, 99%);
+      color: var(--text-color);
       font-size: 1rem;
-      background-color: hsl(226, 25%, 17%);
+      background-color: var(--card-background);
       border-radius: 2rem;
-      border: 1px solid hsl(226, 11%, 37%);
+      border: 1px solid var(--card-border);
       padding: 0.5rem 1rem;
     }
 
@@ -154,7 +163,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: hsl(226, 11%, 37%);
+      background-color: var(--card-border); 
       -webkit-transition: .4s;
       transition: .4s;
     }
@@ -193,24 +202,80 @@
     .slider.round:before {
       border-radius: 50%;
     }
+
+    .row{
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .title{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: var(--card-background);
+      padding: 0.75rem;
+      border-radius: 1rem;
+    }
+
+    .theme-button{
+      background-color: var(--button-background);
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+    }
+
+    .card-tab-container{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap:2.5rem; 
+    }
+
+    .tabs-section{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .heading{
+      color:var(--text-color);
+      font-weight: bold;
+      font-size: 2.25rem;
+    }
+
+    .tabs-container{
+      display: flex;
+      gap:0.5rem;
+    }
+
+    .card-heading{
+      color:var(--text-color);
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+    
   </style>
 </head>
 
 <body>
   <section class="extention py-8">
     <div class="container">
-      <div class="flex flex-col gap-14">
-        <div class="w-full flex flex-row justify-between bg-slate-800 py-3 px-3 rounded-xl">
+      <div class="row">
+        <div class="title">
           <img src="./assets/images/logo.svg" alt="logo">
-          <button class="bg-slate-700 py-3 px-3 rounded-xl"><img src="./assets/images/icon-sun.svg" alt="sun"></button>
+          <button class="theme-button" id="theme-button"><img src="./assets/images/icon-sun.svg"
+              alt="sun"></button>
         </div>
-        <div class="w-full flex flex-col gap-10">
-          <div class="w-full flex flex-row justify-between">
-            <h1 class="text-white font-bold text-4xl">Extension List</h1>
-            <div class="flex gap-2">
-              <button class="bg-red-500 rounded-full py-2 px-4 font-semi" id="all">All</button>
-              <button class="bg-slate-700 rounded-full py-2 px-4 font-semi text-white" id="active">Active</button>
-              <button class="bg-slate-700 rounded-full py-2 px-4 font-semi text-white" id="inactive">Inactive</button>
+        <div class="card-tab-container">
+          <div class="tabs-section">
+            <h1 class="heading">Extension List</h1>
+            <div class="tabs-container">
+              <button class=" rounded-full py-2 px-4 font-semi" id="all">All</button>
+              <button class=" rounded-full py-2 px-4 font-semi text-white" id="active">Active</button>
+              <button class=" rounded-full py-2 px-4 font-semi text-white" id="inactive">Inactive</button>
             </div>
           </div>
           <div class="grid grid-cols-3 gap-4" id="extensions-grid">
