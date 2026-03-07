@@ -4,51 +4,78 @@ document.addEventListener("DOMContentLoaded", function () {
   const inactiveButton = document.getElementById("inactive");
   const grid = document.getElementById("extensions-grid");
   const themeBtn = document.getElementById("theme-button");
-  const themeIcon = document.getElementById("theme-icon")
+  const themeIcon = document.getElementById("theme-icon");
   const root = document.documentElement;
 
   let allExtensions = []; // store raw data
   let currentFilter = "all"; // track active filter
   let currentTheme = "dark";
+  let activeFilterButton = allButton;
+
+  const darkThemeIcon = "./assets/images/icon-moon.svg";
+  const lightThemeIcon = "./assets/images/icon-sun.svg";
 
   setActiveButton(allButton);
 
-  themeBtn.addEventListener("click",function(){
-    if(currentTheme == "dark"){
+  themeBtn.addEventListener("click", function () {
+    if (currentTheme == "dark") {
       lightTheme();
       currentTheme = "light";
-    }
-    else if(currentTheme == "light"){
+      themeIcon.setAttribute("src", darkThemeIcon);
+      setActiveButton(activeFilterButton); // Pass the button, not the string
+    } else if (currentTheme == "light") {
       darkTheme();
       currentTheme = "dark";
+      themeIcon.setAttribute("src", lightThemeIcon);
+      setActiveButton(activeFilterButton); // Pass the button, not the string
     }
-  })
+  });
 
-  function darkTheme(){
-    root.style.setProperty("--background-color" , 'linear-gradient(180deg, #040918 0%, #091540 100%)')
-    root.style.setProperty("--text-color", 'hsl(200, 60%, 99%)');
-    root.style.setProperty("--card-background", 'hsl(226, 25%, 17%)');
-    root.style.setProperty("--button-background", 'hsl(225, 23%, 24%)');
+  function darkTheme() {
+    root.style.setProperty(
+      "--background-color",
+      "linear-gradient(180deg, #040918 0%, #091540 100%)",
+    );
+    root.style.setProperty("--text-color", "hsl(200, 60%, 99%)");
+    root.style.setProperty("--card-background", "hsl(226, 25%, 17%)");
+    root.style.setProperty("--button-background", "hsl(225, 23%, 24%)");
+    root.style.setProperty("--card-border", "hsl(225, 23%, 24%)");
+    root.style.setProperty("--paragraph-text", "hsl(0, 0%, 78%");
+    root.style.setProperty("--tabs-buttons-background", "hsl(225, 23%, 24%)");
   }
 
-  function lightTheme(){
-    root.style.setProperty("--background-color" , 'linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%)')
-    root.style.setProperty("--text-color", 'hsl(227, 75%, 14%)');
-    root.style.setProperty("--card-background", 'hsl(200, 60%, 99%)');
-    root.style.setProperty("--button-background", 'hsl(200, 60%, 99%)');
-
+  function lightTheme() {
+    root.style.setProperty(
+      "--background-color",
+      "linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%)",
+    );
+    root.style.setProperty("--text-color", "hsl(227, 75%, 14%)");
+    root.style.setProperty("--card-background", "hsl(200, 60%, 99%)");
+    root.style.setProperty("--button-background", "hsl(0, 0%, 93%)");
+    root.style.setProperty("--card-border", "hsl(0, 0%, 78%)");
+    root.style.setProperty("--paragraph-text", "hsl(225, 23%, 24%)");
+    root.style.setProperty("--tabs-buttons-background", "hsl(0, 0%, 93%)");
   }
 
   // Set active button style
   function setActiveButton(selected) {
     [allButton, activeButton, inactiveButton].forEach((btn) => {
-      btn.classList.remove("active-filter", "bg-red-500");
-      btn.classList.add("bg-slate-600");
-      btn.classList.remove("active-filter", "text-slate-900");
+      btn.classList.remove(
+        "active-filter",
+        "bg-red-500",
+        "bg-slate-600",
+        "bg-white",
+      );
+      btn.classList.add(currentTheme == "dark" ? "bg-slate-600" : "bg-white");
+      btn.classList.remove("text-slate-900", "text-white"); // Remove both text colors
+      btn.classList.add(
+        currentTheme == "dark" ? "text-white" : "text-slate-900",
+      ); // Add theme-appropriate text color
     });
-    selected.classList.remove("bg-slate-600");
-    selected.classList.add("active-filter", "bg-red-500");
-    selected.classList.add("active-filter", "text-slate-900");
+    selected.classList.remove("bg-slate-600", "bg-white");
+    selected.classList.add("active-filter", "bg-red-500", "text-slate-900");
+
+    activeFilterButton = selected;
   }
 
   // Build a single card element
