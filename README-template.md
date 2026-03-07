@@ -12,12 +12,8 @@ This is a solution to the [Browser extensions manager UI challenge on Frontend M
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -36,14 +32,6 @@ Users should be able to:
 
 ![](./screenshot.jpg)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
-
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
@@ -57,70 +45,55 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Tailwind CSS
+- Vanilla JavaScript
+- Fetch API for loading JSON data
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+The biggest learning for me in this project was working with JSON data in JavaScript. I learned how to use the Fetch API to load external data and dynamically create HTML elements based on that data.
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+fetch("data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    allExtensions = data;
+    renderCards("all");
+  });
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+I also learned about the importance of timing in asynchronous JavaScript - understanding that code inside `.then()` runs after the data loads, while code outside runs immediately. This was crucial for getting the cards to display properly.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+Another key concept was managing state with JavaScript - tracking the current theme and filter, then updating the UI accordingly:
+
+```js
+let currentTheme = "dark";
+let currentFilter = "all";
+let activeFilterButton = allButton;
+```
+
+Working with `classList` methods to dynamically add and remove CSS classes based on user interactions was also a valuable skill to practice.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+I want to continue improving my JavaScript skills, particularly:
+- Working with more complex data structures
+- Understanding asynchronous operations better
+- Building more interactive UIs with state management
+- Improving my debugging skills with browser DevTools
 
 ### AI Collaboration
 
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
+I used Kiro (Claude AI assistant) throughout this project for:
 
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
+- **Debugging async issues**: Understanding why my `cardList` was empty and learning about the timing of fetch operations
+- **Theme switching logic**: Implementing the dark/light theme toggle with proper class management
+- **Event handling**: Learning about valid JavaScript events and fixing issues with event listeners
+- **CSS class conflicts**: Debugging why styles weren't applying correctly when switching themes
 
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+What worked well: Getting explanations for WHY things weren't working, not just the fix. This helped me understand the concepts better.
 
 ## Author
 
 - Website - [Add your name here](https://www.your-site.com)
 - Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
